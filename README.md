@@ -48,7 +48,7 @@ docker-compose.yml：dockerの設定ファイル
 
 
 4.シーダーの実行
-% php artisan migrate:fresh --seed
+% php artisan migrate:fresh --seed  
 ※マイグレーションのフレッシュと同時にシーダーも実行してくれる  
 
 
