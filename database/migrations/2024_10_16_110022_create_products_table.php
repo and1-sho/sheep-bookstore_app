@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();  // 主キー
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');  // 外部キー：categoriesテーブルに関連
             $table->string('product_name');  // 商品名
+            $table->string('author')->nullable(); // 著者名
             $table->text('description');  // 商品の説明
             $table->decimal('price', 10, 2);  // 価格
             $table->integer('stock');  // 在庫数

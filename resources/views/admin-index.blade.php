@@ -25,7 +25,7 @@
                     <h2>{{ $product->product_name }}</h2>
 
                     <!-- 著者の表示 -->
-                    {{-- <p>著者: {{ $product->author }}</p> --}}
+                    <p>著者: {{ $product->author }}</p>
                 </div>
             @endforeach
         </div>
