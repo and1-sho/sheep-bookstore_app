@@ -1,3 +1,10 @@
 <template>
-    <h1>これはテスト用Appコンポーネントです。</h1>
+    <div id="app">
+        <admin-header />
+    </div>
 </template>
+
+<script setup>
+import AdminHeader from './components/AdminHeader.vue';
+</script>
+

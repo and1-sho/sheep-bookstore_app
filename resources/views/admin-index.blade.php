@@ -10,7 +10,9 @@
     </head>
 
     <body>
-        <p class="title">一覧</p>
-        <div id="app"></div>
+        <div id="app">
+            <div id="AdminHeader"></div>
+            <p class="title">一覧</p>
+        </div>
     </body>
 </html>
