@@ -1,6 +1,12 @@
 .title {
-    margin-top: 150px;
-    text-align: center;
+    margin: 0 16px;
+    padding: 0 0 15px 7px;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 24px;
+    border-bottom: solid 1px #909090;
+}
+
+.content_box {
+    max-width: 1032px;
+    margin: 105px auto 0;
 }
