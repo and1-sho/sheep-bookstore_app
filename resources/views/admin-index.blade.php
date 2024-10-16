@@ -12,7 +12,9 @@
     <body>
         <div id="app">
             <div id="AdminHeader"></div>
-            <p class="title">一覧</p>
+            <article class="content_box">
+                <p class="title">一覧</p>
+            </article>
         </div>
     </body>
 </html>
