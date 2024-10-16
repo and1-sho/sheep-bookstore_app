@@ -14,7 +14,7 @@ docker-compose.yml：dockerの設定ファイル
 
 
 
-## マイグレーションの実行  
+## マイグレーションの実行（データベースにテーブルの追加）  
 1.appコンテナのNAMEを確認する  
 % docker compose ps  
 
@@ -32,6 +32,24 @@ docker-compose.yml：dockerの設定ファイル
 ※2回目以降は % php artisan migrate:fresh  
 
 
+
+## シーダーの実行（ダミーデータの追加）  
+1.appコンテナのNAMEを確認する  
+% docker compose ps  
+
+
+2.appコンテナの中に入る  
+% docker exec -it <コンテナNAME> bash  
+
+
+3.アプリフォルダに移動  
+% cd app  
+
+
+
+4.シーダーの実行
+% php artisan migrate:fresh --seed
+※マイグレーションのフレッシュと同時にシーダーも実行してくれる  
 
 
 
