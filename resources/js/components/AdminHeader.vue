@@ -20,6 +20,7 @@ const loginIcon = new URL('../../images/icon_login.png', import.meta.url).href;
     align-items: center;
     justify-content: space-between;
     padding: 17px 45px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .logo {
