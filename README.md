@@ -15,7 +15,7 @@ docker-compose.yml：dockerの設定ファイル
 
 
 ## マイグレーションの実行  
-1. appコンテナのNAMEを確認する  
+1.appコンテナのNAMEを確認する  
 % docker compose ps  
 
 
