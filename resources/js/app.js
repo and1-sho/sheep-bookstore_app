@@ -1,12 +1,7 @@
 import './bootstrap';
 
 import { createApp } from "vue";
-// import App from "./App.vue";
 import AdminHeader from './components/AdminHeader.vue';
-
-// const app = createApp(App);
-// console.log(app.version);
-// app.mount("#app");
 
 import Alpine from 'alpinejs';
 
