@@ -13,6 +13,29 @@ docker-compose.yml：dockerの設定ファイル
 
 
 
+
+## マイグレーションの実行  
+1. appコンテナのNAMEを確認する  
+% docker compose ps  
+
+
+2.appコンテナの中に入る  
+% docker exec -it <コンテナNAME> bash  
+
+
+3.アプリフォルダに移動  
+% cd app  
+
+
+4.マイグレーションの実行  
+% php artisan migrate  
+※2回目以降は % php artisan migrate:fresh  
+
+
+
+
+
+
 ## ブランチ規則 ##
 ### メインブランチ
 直接このブランチにコミットする事は避け、プルリクエストをしてマージするようにしてください  
