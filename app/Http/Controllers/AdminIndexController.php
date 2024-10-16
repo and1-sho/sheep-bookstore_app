@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class AdminIndexController extends Controller
 {
@@ -15,8 +16,11 @@ class AdminIndexController extends Controller
      // トップ画面を表示するメソッド
     public function index()
     {
+        // 全てのプロダクトデータを取得
+        $products = Product::all();
+
          // admin-index.blade.phpを表示
-        return view('admin-index');
+        return view('admin-index', compact('products'));
     }
 
     /**
