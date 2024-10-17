@@ -18,6 +18,7 @@
 
                 <article class="book_view">
                     @foreach ($products as $product)
+                    <!-- 詳細画面のリンク -->
                     <a class="book_box" href="#">
                         <!-- 画像の表示 -->
                         <figure class="book_img">
@@ -34,6 +35,9 @@
                     </a>
                     @endforeach
                 </article>
+
+                <!-- 新規登録のリンク -->
+                <div class="new_book"><a href="#">新規登録</a></div>
             </article>
         </div>
     </body>

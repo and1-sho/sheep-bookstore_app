@@ -1,9 +1,12 @@
 <template>
     <template class="header">
-        <article class="logo">
-            <img class="logo_img" :src="logoImage" alt="Logo">
-            <h1>SHeep</h1>
-        </article>
+        <!-- TOPページのリンク -->
+        <a href="#">
+            <article class="logo">
+                <img class="logo_img" :src="logoImage" alt="Logo">
+                <h1>SHeep</h1>
+            </article>
+        </a>
         <img class="icon_login" :src="loginIcon" alt="Login Icon">
     </template>
 </template>
