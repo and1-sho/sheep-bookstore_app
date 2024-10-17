@@ -17,3 +17,21 @@ if (document.getElementById('AdminHeader')) {
     const AdminHeaderApp = createApp(AdminHeader);
     AdminHeaderApp.mount('#AdminHeader');
 }
+
+// モーダル（ログアウト）の表示非表示
+{
+	const open = document.querySelector('.open');
+	const container = document.querySelector('.container');
+    const modalBg = document.querySelector('.modal_bg');
+    const close = document.querySelector('.close');
+
+	open.addEventListener('click', () => {
+		container.classList.add('active');
+		modalBg.classList.add('active');
+	});
+
+    close.addEventListener('click', () => {
+		container.classList.remove('active');
+		modalBg.classList.remove('active');
+	});
+}
