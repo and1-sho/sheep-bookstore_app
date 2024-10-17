@@ -22,7 +22,7 @@
                     <a class="book_box" href="#">
                         <!-- 画像の表示 -->
                         <figure class="book_img">
-                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                            <img src="{{ asset('storage/' .$product->image) }}" alt="{{ $product->name }}">
                         </figure>
 
                         <div class="name">
@@ -37,7 +37,7 @@
                 </article>
 
                 <!-- 新規登録のリンク -->
-                <div class="new_book"><a href="#">新規登録</a></div>
+                <div class="new_book"><a href="{{ route('admin.products.create') }}">新規登録</a></div>
             </article>
         </div>
     </body>

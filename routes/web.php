@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminIndexController;
+use App\Http\Controllers\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +19,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/admin', [AdminIndexController::class, 'index'])->name('admin.index');
+// 商品一覧を表示
+Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.index');
+// 商品登録フォームを表示
+Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
+// 商品を保存する
+Route::post('admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
 
 
 
