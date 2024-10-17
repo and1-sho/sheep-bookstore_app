@@ -7,6 +7,7 @@
         <title>Laravel</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @vite('resources/css/admin.css')
+        @vite('resources/css/admins_css/index.css')
     </head>
 
     <body>
@@ -14,20 +15,26 @@
             <div id="AdminHeader"></div>
             <article class="content_box">
                 <p class="title">一覧</p>
+
+                <article class="book_view">
+                    @foreach ($products as $product)
+                    <a class="book_box" href="#">
+                        <!-- 画像の表示 -->
+                        <figure class="book_img">
+                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
+                        </figure>
+
+                        <div class="name">
+                            <!-- 商品名の表示 -->
+                            <h2>{{ $product->product_name }}</h2>
+
+                            <!-- 著者の表示 -->
+                            <p>著者: {{ $product->author }}</p>
+                        </div>
+                    </a>
+                    @endforeach
+                </article>
             </article>
-
-            @foreach ($products as $product)
-                <div>
-                    <!-- 画像の表示 -->
-                    <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
-
-                    <!-- 商品名の表示 -->
-                    <h2>{{ $product->product_name }}</h2>
-
-                    <!-- 著者の表示 -->
-                    <p>著者: {{ $product->author }}</p>
-                </div>
-            @endforeach
         </div>
     </body>
 </html>
