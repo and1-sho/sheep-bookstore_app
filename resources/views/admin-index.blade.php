@@ -18,7 +18,7 @@
 
                 <article class="book_view">
                     @foreach ($products as $product)
-                    <div class="book_box">
+                    <a class="book_box" href="#">
                         <!-- 画像の表示 -->
                         <figure class="book_img">
                             <img src="{{ asset($product->image) }}" alt="{{ $product->name }}">
@@ -31,7 +31,7 @@
                             <!-- 著者の表示 -->
                             <p>著者: {{ $product->author }}</p>
                         </div>
-                    </div>
+                    </a>
                     @endforeach
                 </article>
             </article>
