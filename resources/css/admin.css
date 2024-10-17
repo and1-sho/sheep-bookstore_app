@@ -1,5 +1,10 @@
+/* =========================================
+
+　　admin共通のcss
+
+============================================ */
+
 .title {
-    margin: 0 16px;
     padding: 0 0 15px 7px;
     font-weight: bold;
     font-size: 24px;
@@ -9,4 +14,6 @@
 .content_box {
     max-width: 1032px;
     margin: 105px auto 0;
+    padding: 0 16px;
 }
+
