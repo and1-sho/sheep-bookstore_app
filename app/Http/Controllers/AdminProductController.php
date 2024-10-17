@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 
-class AdminIndexController extends Controller
+class AdminProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-     // トップ画面を表示するメソッド
+    // トップ画面を表示するメソッド
     public function index()
     {
         // 全てのプロダクトデータを取得
@@ -28,9 +28,14 @@ class AdminIndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // 商品登録フォームを表示するメソッド
     public function create()
     {
-        //
+        // カテゴリーを全て取得（仮にCategoryモデルがある場合）
+    $categories = \App\Models\Category::all();
+
+    // ビューにカテゴリーを渡して表示
+    return view('admin-product-create', compact('categories'));
     }
 
     /**
@@ -39,9 +44,30 @@ class AdminIndexController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // 商品を保存するメソッド
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validated = $request->validate([
+            'product_name' => 'required|string|max:255', // 商品名
+            'author' => 'nullable|string|max:255', // 著者（任意）
+            'category_id' => 'required|integer|exists:categories,id', // カテゴリーID（存在するもの）
+            'description' => 'required|string', // 説明
+            'price' => 'required|numeric|min:0', // 価格（0以上）
+            'stock' => 'required|integer|min:0', // 在庫数（0以上の整数）
+            'image' => 'nullable|image|max:2048', // 画像（任意、最大2MB）
+        ]);
+
+        // 画像を保存
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('images', 'public');
+        }
+
+        // データを保存
+        Product::create($validated);
+
+        // 登録後にリダイレクト
+        return redirect()->route('admin.products.create');
     }
 
     /**
