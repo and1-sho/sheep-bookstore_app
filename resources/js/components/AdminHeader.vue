@@ -53,6 +53,8 @@ const loginIcon = new URL('../../images/icon_login.png', import.meta.url).href;
     font-weight: bold;
     color: #222222;
     margin-left: 15px;
+    letter-spacing: 0.01em;
+
 }
 
 .logo_img {

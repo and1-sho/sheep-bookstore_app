@@ -1,0 +1,121 @@
+/* =========================================
+
+　　admin-product-createのcss
+
+============================================ */
+.content {
+    display: grid;
+    grid-template-columns: 425px auto ;
+    row-gap:30px;
+    margin-top: 85px;
+    letter-spacing: 0.1em;
+    justify-content: space-between;
+    margin-left: 65px;
+}
+
+.content label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222222;
+}
+
+.content .info_box {
+    display: grid;
+    grid-template-columns: 90px 320px;
+    column-gap: 15px;
+    margin-bottom: 25px;
+    align-items: center;
+}
+
+.content .input {
+    border-color: #D9D8D2;
+    border-radius: 2px;
+}
+
+.content .explanation {
+    align-items: first baseline;
+}
+
+.content .textarea {
+    min-height: 150px;
+}
+
+/* Chrome, Safari, Edge, Opera - 価格のみ矢印を非表示にする */
+.price-input::-webkit-outer-spin-button,
+.price-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    appearance: none; /* 標準プロパティ */
+    margin: 0;
+}
+
+/* Firefox - 価格のみ矢印を非表示にする */
+.price-input {
+    -moz-appearance: textfield;
+    appearance: none; /* 標準プロパティ */
+}
+
+.btn_box {
+    text-align: center;
+    margin: 95px auto 90px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    display: block;
+    width: 220px;
+    height: 50px;
+    background-color: #524E4E;
+    color: #ffffff;
+    font-size: 18px;
+    align-content: center;
+    border-radius: 3px;
+    letter-spacing: 0.1em;
+}
+
+.return_btn {
+    background-color: #fff;
+    color: #524E4E;
+    border: solid 1px #524E4E;
+    margin-right: 35px;
+}
+
+.product_img {
+    padding-left: 100px;
+}
+
+.img_content {
+    margin-bottom: 40px;
+}
+
+.img_1 {
+    width: 325px;
+    height: 325px;
+    border: solid 1px #D9D8D2;
+    background-color: #ededed;
+    margin-bottom: 17px;
+}
+
+.img_all {
+    display: flex;
+    max-width: 325px;
+}
+
+.img {
+    width: 70px;
+    height: 70px;
+    border: solid 1px #D9D8D2;
+    background-color: #ededed;
+}
+
+.add_img input {
+    padding-top: 20px;
+}
+
+.delete_btn {
+    border: solid 1px #D9D8D2;
+    font-size: 14px;
+    padding: 3px 8px;
+    margin-top: 20px;
+    margin: 20px 0 0 auto;
+}
