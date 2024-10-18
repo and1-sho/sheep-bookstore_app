@@ -67,7 +67,7 @@ class AdminProductController extends Controller
         Product::create($validated);
 
         // 登録後にリダイレクト
-        return redirect()->route('admin-product-create');
+        return redirect()->route('admin.index');
     }
 
     /**
@@ -121,6 +121,11 @@ class AdminProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // 商品を取得して削除
+    $product = Product::findOrFail($id); // 存在しないIDの場合は404を返す
+    $product->delete();
+
+    // 削除後のリダイレクトやメッセージ
+    return redirect()->route('admin.index');
     }
 }

@@ -28,6 +28,9 @@ Route::post('admin/products', [AdminProductController::class, 'store'])->name('a
 //詳細情報を表示
 Route::get('admin/products/{id}',[AdminProductController::class, 'show'])->name('admin.products.show');
 
+//商品を削除する
+Route::delete('admin/products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+
 
 
 Route::get('/dashboard', function () {
