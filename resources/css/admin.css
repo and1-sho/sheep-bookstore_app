@@ -9,6 +9,9 @@
     font-weight: bold;
     font-size: 24px;
     border-bottom: solid 1px #909090;
+    color: #222222;
+    letter-spacing: 0.05em;
+
 }
 
 .content_box {
