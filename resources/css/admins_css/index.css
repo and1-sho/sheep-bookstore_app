@@ -56,10 +56,16 @@
     text-align: center;
     margin: 95px auto 90px;
     width: 220px;
+}
+
+.new_book a {
+    display: block;
+    width: 220px;
     height: 50px;
     background-color: #524E4E;
     color: #ffffff;
     font-size: 18px;
     align-content: center;
     border-radius: 3px;
+    letter-spacing: 0.1em;
 }
