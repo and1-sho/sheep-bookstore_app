@@ -88,17 +88,22 @@ const loginIcon = new URL('../../images/icon_login.png', import.meta.url).href;
 
 /* 閉じるボタン */
 .close {
+    position: absolute;
+    top: 12.5px;
+    right: 15px;
     cursor: pointer;
+    width: 25px;
+    height: 25px;
 }
 
 .close i {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 2.5px;
+    right: 2.5px;
     height: 1px;
     width: 20px;
     background-color: #222222;
-    margin-top: 15px;
+    margin-top: 2.5px;
 }
 .close i:nth-of-type(1){
     top: 5px;
