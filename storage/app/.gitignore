@@ -1,3 +1,12 @@
+# 初期設定
+# *
+# !public/
+# !.gitignore
+
 *
 !public/
+!storage/
+!storage/app/
+!storage/app/public/
+!storage/app/public/images/
 !.gitignore
