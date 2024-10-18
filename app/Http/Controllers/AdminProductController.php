@@ -67,7 +67,7 @@ class AdminProductController extends Controller
         Product::create($validated);
 
         // 登録後にリダイレクト
-        return redirect()->route('admin.products.create');
+        return redirect()->route('admin-product-create');
     }
 
     /**
@@ -78,7 +78,16 @@ class AdminProductController extends Controller
      */
     public function show($id)
     {
-        //
+        // 商品のデータをIDで検索
+        $product = Product::find($id);
+
+        //商品が見つからなかった場合の処理
+        if(!$product){
+            return redirect()->route(admin.product.index);
+        }
+
+        return view('admin-product-show', compact('product'));
+
     }
 
     /**

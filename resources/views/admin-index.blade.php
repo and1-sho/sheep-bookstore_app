@@ -19,7 +19,7 @@
                 <article class="book_view">
                     @foreach ($products as $product)
                     <!-- 詳細画面のリンク -->
-                    <a class="book_box" href="#">
+                    <a class="book_box" href="{{ route('admin.products.show', ['id' => $product ->id])}}">
                         <!-- 画像の表示 -->
                         <figure class="book_img">
                             <img src="{{ asset('storage/' .$product->image) }}" alt="{{ $product->name }}">

@@ -25,6 +25,8 @@ Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.inde
 Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
 // 商品を保存する
 Route::post('admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
+//詳細情報を表示
+Route::get('admin/products/{id}',[AdminProductController::class, 'show'])->name('admin.products.show');
 
 
 
