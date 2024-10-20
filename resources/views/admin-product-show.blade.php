@@ -24,13 +24,16 @@
             <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
         @endif
 
+        <!-- 編集ボタン -->
+        <a href="{{ route('admin.products.edit', $product->id) }}">編集する</a>
+
         {{-- 削除ボタン --}}
         <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
             @csrf
             @method('DELETE')
             <button type="submit">削除</button>
         </form>
-        
+
         {{-- 戻るボタン --}}
         <a href="{{ route('admin.index') }}" >戻る</a>
     </body>
