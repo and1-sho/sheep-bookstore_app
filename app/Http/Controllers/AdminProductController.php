@@ -76,6 +76,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 商品詳細を表示するメソッド
     public function show($id)
     {
         // 商品のデータをIDで検索
@@ -96,9 +97,14 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 商品編集画面を表示するメソッド
     public function edit($id)
     {
-        //
+        $product = Product::findOrFail($id);
+
+        $categories = Category::all();
+
+        return view('admin-product-edit', compact('product', 'categories'));
     }
 
     /**
@@ -108,9 +114,40 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 編集内容を保存するメソッド
     public function update(Request $request, $id)
     {
-        //
+        // バリデーション
+        $validated = $request->validate([
+            'product_name' => 'required|string|max:255', // 商品名
+            'author' => 'nullable|string|max:255', // 著者（任意）
+            'category_id' => 'required|exists:categories,id', // カテゴリーID（存在するもの）
+            'description' => 'required|string', // 説明
+            'price' => 'required|numeric|min:0', // 価格（0以上）
+            'stock' => 'required|integer|min:0', // 在庫数（0以上の整数）
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif|image|max:2048', // 画像（任意、最大2MB）
+        ]);
+
+        // 該当するプロダクトを取得
+        $product = Product::findOrFail($id);
+
+        // 画像の処理（新しい画像がアップロードされた場合）
+        if ($request->hasFile('image')) {
+            // 古い画像を削除
+            if ($product->image) {
+                Storage::delete('public/images/' . $product->image);
+            }
+
+            // 新しい画像を保存
+            $filePath = $request->file('image')->store('public/images');
+            $validated['image'] = basename($filePath); // ファイル名だけ保存
+        }
+
+        // データの更新
+        $product->update($validated);
+
+        // リダイレクト
+        return redirect()->route('admin.products.edit', $product->id);
     }
 
     /**
@@ -119,6 +156,7 @@ class AdminProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // 商品を削除するメソッド
     public function destroy($id)
     {
         // 商品を取得して削除

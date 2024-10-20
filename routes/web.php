@@ -25,9 +25,12 @@ Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.inde
 Route::get('/admin/products/create', [AdminProductController::class, 'create'])->name('admin.products.create');
 // 商品を保存する
 Route::post('admin/products', [AdminProductController::class, 'store'])->name('admin.products.store');
-//詳細情報を表示
+// 詳細情報を表示
 Route::get('admin/products/{id}',[AdminProductController::class, 'show'])->name('admin.products.show');
-
+// 編集フォームを表示
+Route::get('admin/products/{id}/edit', [AdminProductController::class, 'edit'])->name('admin.products.edit');
+// 編集内容を保存する
+Route::put('admin/products/{id}', [AdminProductController::class, 'update'])->name('admin.products.update');
 //商品を削除する
 Route::delete('admin/products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
 
