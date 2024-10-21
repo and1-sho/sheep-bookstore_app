@@ -73,23 +73,24 @@
 
                         <article class="product_img">
                             <article class="img_content">
-
                                 <!-- 選択した画像 -->
-                                <div class="img_1"></div>
+                                <div class="img_1">
+                                    <div id="mainImage"></div>
+                                </div>
 
                                 <div class="img_all">
-                                    <!-- ここに複数の画像のサムネが入ります -->
-                                    <div class="img"></div>
+                                    <!-- サムネイル表示エリア -->
+                                    <div id="thumbnails"></div>
                                 </div>
                             </article>
 
                             <div class="add_img">
                                 <label for="image">商品画像</label>
-                                <input class="input" type="file" name="image" accept="image/*">
+                                <input class="input" id="imageInput" type="file" name="image" accept="image/*" multiple>
                             </div>
 
                             <!-- 画像削除ボタン -->
-                            <button class="delete_btn" type="submit">画像を削除</button>
+                            <button class="delete_btn" type="button" onclick="deleteCurrentImage()">現在の画像を削除</button>
                         </article>
                     </div>
 
