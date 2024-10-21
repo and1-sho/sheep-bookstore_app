@@ -22,16 +22,16 @@
                             <dd>{{ $product->product_name }}</dd>
                         </dl>
                         <dl class="info_item">
-                            <dt>金額：</dt>
-                            <dd>{{ $product->price }}円</dd>
+                            <dt>著者名：</dt>
+                            <dd>{{ $product->author }}</dd>
                         </dl>
                         <dl class="info_item">
                             <dt>説明：</dt>
                             <dd>{{ $product->description }}</dd>
                         </dl>
                         <dl class="info_item">
-                            <dt>著者名：</dt>
-                            <dd>{{ $product->author }}</dd>
+                            <dt>金額：</dt>
+                            <dd>{{ $product->price }}円</dd>
                         </dl>
                         <dl class="info_item item_end">
                             <dt>在庫数：</dt>
