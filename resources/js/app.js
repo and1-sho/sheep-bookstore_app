@@ -35,3 +35,6 @@ if (document.getElementById('AdminHeader')) {
 		modalBg.classList.remove('active');
 	});
 }
+
+// 画像のハンドリングのためのコードをインポート
+import './imageHandler';

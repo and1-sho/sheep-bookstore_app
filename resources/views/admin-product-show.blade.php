@@ -14,14 +14,14 @@
         <h1>商品詳細</h1>
 
         <h1>書籍名:{{ $product->product_name }}</h1>
-        <p>金額: {{ $product->price }}</p>
-        <p>説明: {{ $product->description }}</p>
-        <p>著者名: {{ $product->author }}</p>
-        <p>在庫数: {{ $product->stock }}</p>
+        <p>金額:{{ $product->price }}</p>
+        <p>説明:{{ $product->description }}</p>
+        <p>著者名:{{ $product->author }}</p>
+        <p>在庫数:{{ $product->stock }}</p>
 
         <!-- 画像がある場合は表示 -->
         @if ($product->image)
-            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
         @endif
 
         <!-- 編集ボタン -->

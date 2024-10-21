@@ -94,11 +94,23 @@
     border: solid 1px #D9D8D2;
     background-color: #ededed;
     margin-bottom: 17px;
+    background-size: cover; /* 画像全体を表示 */
+    background-position: center; /* 中央に配置 */
 }
 
-.img_all {
+#mainImage {
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+#thumbnails {
     display: flex;
+    flex-wrap: wrap;
     max-width: 325px;
+    gap: 5px;
 }
 
 .img {
@@ -106,6 +118,15 @@
     height: 70px;
     border: solid 1px #D9D8D2;
     background-color: #ededed;
+    background-size: cover;
+    background-position: center;
+    margin-right: 5px; /* サムネイル間の間隔 */
+    cursor: pointer;
+    transition: border 0.3s; /* ホバー時のアニメーション */
+}
+
+.img.selected {
+    border: solid 2px #6492ef; /* 選択されたサムネイルの枠 */
 }
 
 .add_img input {
