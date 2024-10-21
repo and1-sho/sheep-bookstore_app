@@ -14,7 +14,7 @@
         <div id="app">
             <div id="AdminHeader"></div>
             <article class="content_box">
-                <p class="title">一覧</p>
+                <h1 class="title">一覧</h1>
 
                 <article class="book_view">
                     @foreach ($products as $product)
