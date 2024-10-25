@@ -50,6 +50,28 @@ function addImages(files) {
     });
 }
 
+// 画像の削除
+function removeImage(index) {
+    if (index >= 0 && index < imageFiles.length) {
+        imageFiles.splice(index, 1); // 配列から削除
+
+        // 削除後のインデックスを再設定
+        if (imageFiles.length === 0) {
+            currentIndex = 0; // 配列が空の場合はインデックスをリセット
+            mainImageDiv.style.backgroundImage = ''; // メイン画像をクリア
+        } else {
+            // 削除した画像がメイン画像の場合、次のインデックスを設定
+            if (currentIndex >= imageFiles.length) {
+                currentIndex = imageFiles.length - 1; // 末尾に設定
+            }
+            updateMainImage(); // メイン画像を更新
+        }
+
+        // サムネイルを更新
+        updateThumbnails();
+    }
+}
+
 // サムネイルの更新
 function updateThumbnails() {
     // 既存のサムネイルをクリア
@@ -58,32 +80,20 @@ function updateThumbnails() {
     }
 
     // 新しいサムネイルを作成
-    imageFiles.forEach((src, index) => {
-        createThumbnail(src);
+    imageFiles.forEach((src) => {
+        createThumbnail(src); // サムネイルを作成
     });
 
-    // もしサムネイルが1つ以上あればメイン画像を設定
+    // サムネイルが1つ以上ある場合は、最新の画像をメインに設定
     if (imageFiles.length > 0) {
-        updateMainImage();
-    }
-}
-
-// 画像の削除
-function removeImage(index) {
-    if (index >= 0 && index < imageFiles.length) {
-        imageFiles.splice(index, 1); // 配列から削除
-
-        // サムネイルを更新
-        updateThumbnails();
-
-        // 現在のインデックスを調整
-        if (imageFiles.length > 0) {
-            currentIndex = Math.min(currentIndex, imageFiles.length - 1); // インデックスを範囲内に調整
-            updateMainImage(); // メイン画像を更新
-        } else {
-            currentIndex = 0; // インデックスをリセット
-            mainImageDiv.style.backgroundImage = ''; // 画像がない場合はクリア
+        // 現在のインデックスが配列の長さを超えている場合、インデックスを修正
+        if (currentIndex >= imageFiles.length) {
+            currentIndex = imageFiles.length - 1; // 最後のインデックスに設定
         }
+        updateMainImage(); // メイン画像を更新
+    } else {
+        // 配列が空の場合はメイン画像をクリア
+        mainImageDiv.style.backgroundImage = '';
     }
 }
 
