@@ -101,5 +101,9 @@
                 </form>
             </article>
         </div>
+        {{-- こののページでのみ読み込むスクリプト --}}
+        @if(request()->is('specific-page'))
+            @vite('resources/js/imageHandler.js')
+        @endif
     </body>
 </html>
