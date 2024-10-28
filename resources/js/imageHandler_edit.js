@@ -3,114 +3,121 @@ let currentIndex = 0; // 現在のインデックス
 const mainImageDiv = document.getElementById('mainImage'); // メイン画像の要素
 const thumbnailContainer = document.getElementById('thumbnails'); // サムネイルのコンテナ
 
-// 初期画像の設定（HTMLからデータを取得）
-const initialImage = document.getElementById('initialImage').value; // hidden inputから取得
+// 初期画像の設定
+const initialImage = document.getElementById('initialImage').value;
 if (initialImage) {
-    imageFiles.push(initialImage); // 初期画像を配列に追加
-    currentIndex = 0; // 最初のインデックス
+    imageFiles.push(initialImage);
+    currentIndex = 0;
+    updateMainImage(); // 初期メイン画像を更新
+    updateThumbnails(); // 初期サムネイルを更新
 }
 
 // メイン画像を更新
 function updateMainImage() {
     if (imageFiles.length > 0) {
-        mainImageDiv.style.backgroundImage = `url(${imageFiles[currentIndex]})`; // メイン画像を設定
+        mainImageDiv.style.backgroundImage = `url(${imageFiles[currentIndex]})`;
     } else {
-        mainImageDiv.style.backgroundImage = ''; // 画像がない場合はクリア
+        mainImageDiv.style.backgroundImage = '';
     }
 }
 
 // サムネイルの作成
-function createThumbnail(imageSrc) {
+function createThumbnail(imageSrc, index) {
     const thumbnailDiv = document.createElement('div');
-    thumbnailDiv.className = 'thumbnail';
+    thumbnailDiv.className = 'img';
     thumbnailDiv.style.backgroundImage = `url(${imageSrc})`;
 
+    // 選択されているサムネイルに枠を追加
+    if (index === currentIndex) {
+        thumbnailDiv.classList.add('selected');
+    }
+
+    // クリックイベントでメイン画像を変更
     thumbnailDiv.addEventListener('click', function() {
-        currentIndex = imageFiles.indexOf(imageSrc); // インデックスを更新
+        currentIndex = index; // インデックスを設定
         updateMainImage(); // メイン画像を更新
+        updateThumbnails(); // サムネイルを再描画して選択枠を更新
     });
 
-    thumbnailContainer.appendChild(thumbnailDiv); // サムネイルをコンテナに追加
+    thumbnailContainer.appendChild(thumbnailDiv);
 }
 
 // 画像の追加
-function addImages(files) {
-    Array.from(files).forEach(file => {
-        const reader = new FileReader();
-        reader.onload = function(event) {
-            const imageSrc = event.target.result;
-            imageFiles.push(imageSrc); // 画像を配列に追加
-            createThumbnail(imageSrc); // サムネイルを作成
+function addImages() {
+    const input = document.getElementById('imageInput');
+    const files = input.files;
 
-            // ここでメイン画像を更新する前に、currentIndexを最後の画像に設定する
-            currentIndex = imageFiles.length - 1; // 追加した画像をメインにする
-            updateMainImage(); // メイン画像を更新
-        };
-        reader.readAsDataURL(file);
+    // 読み込み済み画像データの配列をPromiseで作成
+    const imagePromises = Array.from(files).map(file => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const imageSrc = event.target.result;
+
+                // 重複チェック：既にimageFilesに画像が含まれているか確認
+                if (!imageFiles.includes(imageSrc)) {
+                    resolve(imageSrc); // 重複がなければ解決
+                } else {
+                    resolve(null); // 重複があればnullで解決
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // すべての画像読み込みが完了した後に更新
+    Promise.all(imagePromises).then(newImages => {
+        // nullを除外して新しい画像だけ追加
+        newImages.filter(src => src !== null).forEach(src => imageFiles.push(src));
+        currentIndex = imageFiles.length - 1; // メイン画像を最新の画像に設定
+        updateMainImage(); // メイン画像を更新
+        updateThumbnails(); // サムネイルの更新
     });
 }
 
-// 画像の削除
-function removeImage(index) {
-    if (index >= 0 && index < imageFiles.length) {
-        imageFiles.splice(index, 1); // 配列から削除
+// 画像削除ボタンの設定
+const deleteButton = document.getElementById('deleteButton');
+deleteButton.addEventListener('click', function() {
+    removeCurrentImage();
+});
 
-        // 削除後のインデックスを再設定
-        if (imageFiles.length === 0) {
-            currentIndex = 0; // 配列が空の場合はインデックスをリセット
-            mainImageDiv.style.backgroundImage = ''; // メイン画像をクリア
-        } else {
-            // 削除した画像がメイン画像の場合、次のインデックスを設定
+// 現在の画像の削除
+function removeCurrentImage() {
+    if (imageFiles.length > 0) {
+        imageFiles.splice(currentIndex, 1);
+
+        if (imageFiles.length > 0) {
             if (currentIndex >= imageFiles.length) {
-                currentIndex = imageFiles.length - 1; // 末尾に設定
+                currentIndex = imageFiles.length - 1;
             }
-            updateMainImage(); // メイン画像を更新
+        } else {
+            currentIndex = 0;
         }
 
-        // サムネイルを更新
-        updateThumbnails();
+        updateMainImage();
+        updateThumbnails(); // サムネイルの更新
     }
 }
 
 // サムネイルの更新
 function updateThumbnails() {
-    // 既存のサムネイルをクリア
+    // サムネイルのコンテナをクリア
     while (thumbnailContainer.firstChild) {
         thumbnailContainer.removeChild(thumbnailContainer.firstChild);
     }
 
-    // 新しいサムネイルを作成
-    imageFiles.forEach((src) => {
-        createThumbnail(src); // サムネイルを作成
+    // 画像ファイルが存在する場合にサムネイルを作成
+    imageFiles.forEach((src, index) => {
+        createThumbnail(src, index); // サムネイルを作成
     });
-
-    // サムネイルが1つ以上ある場合は、最新の画像をメインに設定
-    if (imageFiles.length > 0) {
-        // 現在のインデックスが配列の長さを超えている場合、インデックスを修正
-        if (currentIndex >= imageFiles.length) {
-            currentIndex = imageFiles.length - 1; // 最後のインデックスに設定
-        }
-        updateMainImage(); // メイン画像を更新
-    } else {
-        // 配列が空の場合はメイン画像をクリア
-        mainImageDiv.style.backgroundImage = '';
-    }
 }
 
 // 画像入力の設定
 const imageInput = document.getElementById('imageInput');
 imageInput.addEventListener('change', function(event) {
-    const files = event.target.files;
-    if (files.length > 0) {
-        addImages(files); // 画像を追加
+    if (event.target.files.length > 0) {
+        addImages();
     }
 });
 
-// 削除ボタンの設定
-const deleteButton = document.getElementById('deleteButton');
-deleteButton.addEventListener('click', function() {
-    removeImage(currentIndex); // 現在のインデックスの画像を削除
-});
-
-// 初期状態のメイン画像の設定
 updateMainImage();
