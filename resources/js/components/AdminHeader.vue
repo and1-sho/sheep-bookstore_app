@@ -55,7 +55,6 @@ const logoutIcon = new URL('../../images/icon_logout.png', import.meta.url).href
     color: #222222;
     margin-left: 15px;
     letter-spacing: 0.01em;
-
 }
 
 .logo_img {
