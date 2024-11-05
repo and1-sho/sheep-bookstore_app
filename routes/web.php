@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminProductController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +16,11 @@ use App\Http\Controllers\AdminProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+/*************  管理者側 **************/
 
 // 商品一覧を表示
 Route::get('/admin', [AdminProductController::class, 'index'])->name('admin.index');
@@ -33,6 +36,10 @@ Route::get('admin/products/{id}/edit', [AdminProductController::class, 'edit'])-
 Route::put('admin/products/{id}', [AdminProductController::class, 'update'])->name('admin.products.update');
 //商品を削除する
 Route::delete('admin/products/{id}', [AdminProductController::class, 'destroy'])->name('admin.products.destroy');
+
+/*************  ユーザー側 **************/
+// 商品一覧を表示
+Route::get('/', [ProductController::class, 'index'])->name('index');
 
 
 
