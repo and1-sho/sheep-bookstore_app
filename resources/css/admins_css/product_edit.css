@@ -116,7 +116,8 @@
 .btn_box {
     text-align: center;
     margin: 95px auto 90px;
-    width: 220px;
+    display: flex;
+    justify-content: center;
 }
 
 .btn {
@@ -137,4 +138,11 @@
     padding: 3px 8px;
     margin-top: 20px;
     margin: 20px 0 0 auto;
+}
+
+.return_btn {
+    background-color: #fff;
+    color: #524E4E;
+    border: solid 1px #524E4E;
+    margin-left: 35px;
 }
