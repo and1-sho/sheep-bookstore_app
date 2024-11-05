@@ -92,9 +92,12 @@
                     </div>
 
                     <!-- 商品の登録ボタン -->
-                    <div class="btn_box">
+                    <article class="btn_box">
                         <button class="btn" type="submit">商品を登録</button>
-                    </div>
+
+                        {{-- 戻るボタン --}}
+                        <a class="btn return_btn" href="{{ route('admin.products.show', ['id' => $product ->id])}}" >戻る</a>
+                    </article>
                 </form>
             </article>
         </div>
