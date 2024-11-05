@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    @vite('resources/css/user_css/index_user.css')
+    @vite('resources/css/user_css/index.css')
 </head>
 
 <body>
     <div id="app">
-        <div id="AdminHeader"></div>
+        <div id="UserHeader"></div>
         <article class="content_box">
             @foreach ($products as $product)
             <!-- 詳細画面のリンク -->

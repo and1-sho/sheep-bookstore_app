@@ -1,14 +1,20 @@
 <template>
     <template class="header">
         <!-- ロゴのリンク -->
-        <a href="http://localhost:8000/admin">
+        <a href="http://localhost:8000">
             <article class="logo">
                 <img class="logo_img" :src="logoImage" alt="Logo">
                 <h1>SHeep</h1>
             </article>
         </a>
 
-        <img class="icon_login open" :src="loginIcon" alt="Login Icon">
+        <article class="icon">
+            <!-- 新規登録とログイン選択の画面 -->
+            <a href="#">
+                <img class="icon_login" :src="loginIcon" alt="Login Icon">
+            </a>
+            <img class="icon_cart open" :src="cartIcon" alt="Cart Icon">
+        </article>
 
         <!-- モーダル -->
         <div class="modal_bg"></div>
@@ -17,13 +23,21 @@
                 <i></i>
                 <i></i>
             </div>
-            <img class="icon_admin" :src="logoutIcon" alt="Login Icon">
 
-            <!-- ログインしているユーザー名が入ります -->
-            <p class="user_name">ユーザー名</p>
+            <p class="modal_name">カート</p>
 
-            <!-- ログアウトのリンク -->
-            <button class="Logout" onclick="location.href='http://localhost:8000'">ログアウト</button>
+            <article>
+                <!-- カートに入れた商品を表示 -->
+
+
+            </article>
+
+            <article class="total_price">
+                <div class="partition"></div>
+
+                <!-- カートに入れた合計金額 -->
+                <a class="btn" href="#">ご購入手続きへ　・ ¥（合計金額）JPY</a>
+            </article>
         </div>
 
     </template>
@@ -33,7 +47,7 @@
 // importで画像を指定
 const logoImage = new URL('../../images/logo_img.png', import.meta.url).href;
 const loginIcon = new URL('../../images/icon_login.png', import.meta.url).href;
-const logoutIcon = new URL('../../images/icon_logout.png', import.meta.url).href;
+const cartIcon = new URL('../../images/icon_cart.png', import.meta.url).href;
 </script>
 
 <style scoped>
@@ -61,25 +75,30 @@ const logoutIcon = new URL('../../images/icon_logout.png', import.meta.url).href
     width: 46px;
 }
 
-.icon_login {
+.icon {
+    display: flex;
+}
+
+.icon_login,.icon_cart {
     width: 22px;
     height: 22px;
     cursor: pointer;
 }
 
+.icon_cart {
+    margin-left: 22px;
+}
+
 /* モーダル */
 .container {
-    width: 330px;
-    height: 280px;
+    width: 400px;
+    height: 100vh;
     position: fixed;
-    top: 60px;
-    right: 50px;
+    top: 0;
+    right: 0;
     background-color: #ffffff;
     opacity: 0;
     pointer-events: none; /* モーダルを閉じたときに要素も消せる */
-    text-align: center;
-    border-radius: 10px;
-    align-content: center;
     transition: 0.3s;
 }
 
@@ -91,7 +110,7 @@ const logoutIcon = new URL('../../images/icon_logout.png', import.meta.url).href
 /* 閉じるボタン */
 .close {
     position: absolute;
-    top: 12.5px;
+    top: 15px;
     right: 15px;
     cursor: pointer;
     width: 25px;
@@ -117,25 +136,35 @@ const logoutIcon = new URL('../../images/icon_logout.png', import.meta.url).href
 }
 
 /* モーダルの中 */
-.icon_admin {
-    margin: 0 auto;
-    width: 68px;
-    margin-bottom: 14px;
-}
-
-.user_name {
+.modal_name {
     font-size: 16px;
-    font-weight: bold;
-    color: #222222;
+    margin: 15px 0 0 30px;
 }
 
-.Logout {
-    width: 190px;
-    height: 40px;
-    margin-top: 30px;
-    background-color: #524E4E;
-    border-radius: 3px;
+.total_price {
+    position: fixed;
+    bottom: 30px;
+    right: 0;
+}
+
+.partition {
+    width: 400px;
+    height: 1px;
+    background-color: #D4D2CB;
+}
+
+.btn {
+    display: block;
+    width: 340px;
+    height: 50px;
+    background-color: #1C1B1B;
     color: #ffffff;
+    font-size: 12px;
+    align-content: center;
+    text-align: center;
+    /* border-radius: 3px; */
+    letter-spacing: 0.1em;
+    margin: 30px auto;
 }
 
 /* モーダル背景 */

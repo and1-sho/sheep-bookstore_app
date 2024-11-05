@@ -2,6 +2,7 @@ import './bootstrap';
 
 import { createApp } from "vue";
 import AdminHeader from './components/AdminHeader.vue';
+import UserHeader from './components/UserHeader.vue';
 
 import Alpine from 'alpinejs';
 
@@ -16,6 +17,16 @@ if (document.getElementById('AdminHeader')) {
     }
     const AdminHeaderApp = createApp(AdminHeader);
     AdminHeaderApp.mount('#AdminHeader');
+}
+
+// #UserHeader が存在する場合のみ UserHeader をマウント
+if (document.getElementById('UserHeader')) {
+    const existingUserHeaderApp = document.querySelector('#UserHeader').__vue_app__;
+    if (existingUserHeaderApp) {
+        existingUserHeaderApp.unmount();
+    }
+    const UserHeaderApp = createApp(UserHeader);
+    UserHeaderApp.mount('#UserHeader');
 }
 
 // モーダル（ログアウト）の表示非表示

@@ -1,3 +1,8 @@
+/* =========================================
+
+　　indexのcss　(user)
+
+============================================ */
 .content_box {
     padding: 35px 42px;
     display: grid;
@@ -16,7 +21,6 @@
     margin: auto 0;
     color: #222222;
     letter-spacing: 0.05em;
-
 }
 
 .book_box .name h2 {

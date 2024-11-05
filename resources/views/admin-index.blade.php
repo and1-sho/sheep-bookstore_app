@@ -7,7 +7,7 @@
         <title>Laravel</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @vite('resources/css/admin.css')
-        @vite('resources/css/admins_css/index.css')
+        @vite('resources/css/admins_css/admin_index.css')
     </head>
 
     <body>
