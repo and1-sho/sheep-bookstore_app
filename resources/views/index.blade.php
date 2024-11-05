@@ -11,7 +11,7 @@
 
 <body>
     <div id="app">
-        <div id="AdminHeader"></div>
+        <div id="UserHeader"></div>
         <article class="content_box">
             @foreach ($products as $product)
             <!-- 詳細画面のリンク -->
