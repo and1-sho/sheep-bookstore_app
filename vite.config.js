@@ -13,4 +13,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    // プロダクション（本番）環境での警告の解消
+    define: {
+        __VUE_PROD_DEVTOOLS__: false,
+        __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false,
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_MODE__: true,
+    }
 });

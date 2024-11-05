@@ -61,15 +61,6 @@
                             </div>
                         </article>
 
-                        {{-- <div>
-                            <label for="image">商品画像</label>
-                            <input class="input" type="file" id="image" name="image" accept="image/*">
-                            <!-- 画像が存在する場合のみ表示 -->
-                            @if ($product->image)
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" style="max-width: 200px;">
-                            @endif
-                        </div> --}}
-
                         <article class="product_img">
                             <article class="img_content">
                                 <!-- 初期画像を渡す隠し入力 -->
