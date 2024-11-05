@@ -1,7 +1,7 @@
 <template>
     <template class="header">
         <!-- ロゴのリンク -->
-        <a href="#">
+        <a href="http://localhost:8000/admin">
             <article class="logo">
                 <img class="logo_img" :src="logoImage" alt="Logo">
                 <h1>SHeep</h1>
