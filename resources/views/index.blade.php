@@ -42,7 +42,7 @@
                 </div>
 
                 <!-- 価格の表示 -->
-                <p class="price">¥0,000<span>（税込）</span></p>
+                <p class="price">{{ $product->price }}</p>
             </a>
             @endforeach
         </article>
