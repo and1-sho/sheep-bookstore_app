@@ -85,8 +85,8 @@
                             </article>
 
                             <div class="add_img">
-                                <label for="image">商品画像</label>
-                                <input class="input" id="imageInput" type="file" name="image" accept="image/*" multiple>
+                                <label for="images">商品画像</label>
+                                <input class="input" id="imageInput" type="file" name="images[]" accept="image/*" multiple>
                             </div>
 
                             <!-- 画像削除ボタン -->
