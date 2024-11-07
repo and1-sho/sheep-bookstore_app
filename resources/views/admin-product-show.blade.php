@@ -62,6 +62,13 @@
                                 </div>
                             </div>
                         </article>
+                    @else
+                        <!-- デフォルト画像を表示 -->
+                        <article class="img_content">
+                            <div class="img_1">
+                                <div id="mainImage" style="background-image: url('{{ asset('storage/images/default-image.png') }}')"></div>
+                            </div>
+                        </article>
                     @endif
                 </div>
 
