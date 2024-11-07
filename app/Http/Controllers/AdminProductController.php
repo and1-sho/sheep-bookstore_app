@@ -55,19 +55,30 @@ class AdminProductController extends Controller
             'description' => 'required|string', // 説明
             'price' => 'required|numeric|min:0', // 価格（0以上）
             'stock' => 'required|integer|min:0', // 在庫数（0以上の整数）
-            'image' => 'nullable|image|max:2048', // 画像（任意、最大2MB）
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // 画像（任意、最大2MB）
         ]);
 
-        // 画像を保存
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('images', 'public');
+        // 画像のパスを格納する配列
+        $imagePaths = [];
+
+
+        // 複数画像を保存
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            // 画像を保存し、そのパスを配列に追加
+            $path = $image->store('images', 'public');
+            $imagePaths[] = $path;
         }
+    }
 
-        // データを保存
-        Product::create($validated);
+    // JSON形式で画像パスを保存
+    $validated['images'] = json_encode($imagePaths);
 
-        // 登録後にリダイレクト
-        return redirect()->route('admin.index');
+    // データを保存
+    Product::create($validated);
+
+    // 登録後にリダイレクト
+    return redirect()->route('admin.index');
     }
 
     /**

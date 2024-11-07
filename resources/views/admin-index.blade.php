@@ -9,7 +9,6 @@
         @vite('resources/css/admin.css')
         @vite('resources/css/admins_css/admin_index.css')
     </head>
-
     <body>
         <div id="app">
             <div id="AdminHeader"></div>
@@ -19,10 +18,23 @@
                 <article class="book_view">
                     @foreach ($products as $product)
                     <!-- 詳細画面のリンク -->
-                    <a class="book_box" href="{{ route('admin.products.show', ['id' => $product ->id])}}">
+                    <a class="book_box" href="{{ route('admin.products.show', ['id' => $product->id]) }}">
+
                         <!-- 画像の表示 -->
                         <figure class="book_img">
-                            <img src="{{ asset('storage/' .$product->image) }}" alt="{{ $product->name }}">
+                            @php
+                                // 配列でない場合のみJSONデコードを実行
+                                $images = is_array($product->images) ? $product->images : json_decode($product->images);
+                            @endphp
+
+
+                            @if (!empty($images) && is_array($images) && count($images) > 0 && !empty($images[0]))
+                                    <!-- 最初の画像のみ表示 -->
+                                    <img src="{{ asset('storage/' . $images[0]) }}" alt="{{ $product->product_name }}">
+                            @else
+                                    <!-- デフォルト画像 -->
+                                    <img src="{{ asset('storage/images/default-image.png') }}" alt="No Image Available">
+                            @endif
                         </figure>
 
                         <div class="name">

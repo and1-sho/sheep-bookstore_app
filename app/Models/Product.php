@@ -15,7 +15,11 @@ class Product extends Model
         'description',
         'price',
         'stock',
-        'image',
+        'images', // 複数画像を格納するカラム
         'category_id',
+    ];
+
+    protected $casts = [
+        'images' => 'array', // JSONを配列にキャスト
     ];
 }

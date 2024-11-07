@@ -40,18 +40,25 @@
                     </article>
 
                     <!-- 画像がある場合は表示 -->
-                    @if ($product->image)
-                    <article class="img_content">
-                        <!-- 選択した画像 -->
-                        <div class="img_1">
-                            <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                        </div>
+                    @php
+                        // imagesが配列でない場合はJSONデコード
+                        $images = is_array($product->images) ? $product->images : json_decode($product->images);
+                    @endphp
 
-                        <div class="img_all">
-                            <!-- サムネイル表示エリア -->
-                            <img class="thumbnail" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-                        </div>
-                    </article>
+                    @if (!empty($images) && is_array($images))
+                            <article class="img_content">
+                                    <!-- メイン画像（最初の画像） -->
+                                    <div class="img_1">
+                                            <img src="{{ asset('storage/' . $images[0]) }}" alt="{{ $product->product_name }}">
+                                    </div>
+
+                                    <!-- サムネイル表示エリア -->
+                                    <div class="img_all">
+                                            @foreach ($images as $image)
+                                                <img class="thumbnail" src="{{ asset('storage/' . $image) }}" alt="{{ $product->product_name }}">
+                                            @endforeach
+                                    </div>
+                            </article>
                     @endif
                 </div>
 
