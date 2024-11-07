@@ -8,6 +8,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         @vite('resources/css/admin.css')
         @vite('resources/css/admins_css/product_show.css')
+        @vite('resources/js/imageHandler_show.js')
     </head>
 
     <body>
@@ -46,19 +47,21 @@
                     @endphp
 
                     @if (!empty($images) && is_array($images))
-                            <article class="img_content">
-                                    <!-- メイン画像（最初の画像） -->
-                                    <div class="img_1">
-                                            <img src="{{ asset('storage/' . $images[0]) }}" alt="{{ $product->product_name }}">
-                                    </div>
+                        <article class="img_content">
+                            <!-- メイン画像（最初の画像） -->
+                            <div class="img_1">
+                                <div id="mainImage" style="background-image: url('{{ asset('storage/' . $images[0]) }}')"></div>
+                            </div>
 
-                                    <!-- サムネイル表示エリア -->
-                                    <div class="img_all">
-                                            @foreach ($images as $image)
-                                                <img class="thumbnail" src="{{ asset('storage/' . $image) }}" alt="{{ $product->product_name }}">
-                                            @endforeach
-                                    </div>
-                            </article>
+                            <!-- サムネイル表示エリア -->
+                            <div class="img_all">
+                                <div id="thumbnails">
+                                    @foreach ($images as $image)
+                                        <div class="img thumbnail" style="background-image: url('{{ asset('storage/' . $image) }}');"></div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </article>
                     @endif
                 </div>
 
