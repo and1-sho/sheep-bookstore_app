@@ -95,8 +95,8 @@
                     </div>
 
                     <div class="btn_box">
-                        <a class="btn return_btn" href="{{ route('admin.index') }}" >戻る</a>
                         <button class="btn" type="submit">商品を登録</button>
+                        <a class="btn return_btn" href="{{ route('admin.index') }}" >戻る</a>
                     </div>
                 </form>
             </article>
