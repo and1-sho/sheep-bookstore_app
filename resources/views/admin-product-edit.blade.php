@@ -64,6 +64,43 @@
                         <article class="product_img">
                             <article class="img_content">
                                 <!-- 初期画像を渡す隠し入力 -->
+                                <input type="hidden" id="initialImage" value="{{ $product->images ? json_encode($product->images) : '' }}">
+
+                                <!-- 選択した画像（メイン画像） -->
+                                <div class="img_1">
+                                    @php
+                                        // imagesが配列でない場合はJSONデコード
+                                        $images = is_array($product->images) ? $product->images : json_decode($product->images);
+                                    @endphp
+
+                                    <!-- メイン画像（最初の画像） -->
+                                    @if (!empty($images) && is_array($images) && count($images) > 0)
+                                        <div id="mainImage" style="background-image: url('{{ asset('storage/' . $images[0]) }}')"></div>
+                                    @endif
+                                </div>
+                                <!-- サムネイル -->
+                                <div class="img_all">
+                                    <div id="thumbnails">
+                                        @if (!empty($images) && is_array($images))
+                                            @foreach ($images as $image)
+                                                <div class="img" style="background-image: url('{{ asset('storage/' . $image) }}');"></div>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                </div>
+                            </article>
+
+                            <div class="add_img">
+                                <label for="images">商品画像</label>
+                                <input class="input" id="imageInput" type="file" name="images[]" accept="image/*" multiple>
+                            </div>
+
+                            <!-- 画像削除ボタン -->
+                            <button class="delete_btn" type="button" id="deleteButton">現在の画像を削除</button>
+                        </article>
+                        {{-- <article class="product_img">
+                            <article class="img_content">
+                                <!-- 初期画像を渡す隠し入力 -->
                                 <input type="hidden" id="initialImage" value="{{ $product->image ? asset('storage/' . $product->image) : '' }}">
 
                                 <!-- 選択した画像（メイン画像） -->
@@ -88,7 +125,7 @@
 
                             <!-- 画像削除ボタン -->
                             <button class="delete_btn" type="button" id="deleteButton">現在の画像を削除</button>
-                        </article>
+                        </article> --}}
                     </div>
 
                     <!-- 商品の登録ボタン -->
