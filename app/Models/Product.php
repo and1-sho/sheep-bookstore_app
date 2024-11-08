@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'product_name',
         'author',
@@ -22,4 +23,9 @@ class Product extends Model
     protected $casts = [
         'images' => 'array', // JSONを配列にキャスト
     ];
+
+    public function category()
+{
+    return $this->belongsTo(Category::class);
+}
 }
