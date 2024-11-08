@@ -27,6 +27,10 @@
                             <dd>{{ $product->author }}</dd>
                         </dl>
                         <dl class="info_item">
+                            <dt>カテゴリ：</dt>
+                            <dd>{{ optional($product->category)->category_name }}</dd>
+                        </dl>
+                        <dl class="info_item">
                             <dt>説明：</dt>
                             <dd>{{ $product->description }}</dd>
                         </dl>
