@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('product_name');  // 商品名
             $table->string('author')->nullable(); // 著者名
             $table->text('description');  // 商品の説明
-            $table->decimal('price', 10, 2);  // 価格
+            $table->integer('price');  // 価格
             $table->integer('stock');  // 在庫数
             $table->json('images')->nullable();  // 複数画像のパスを保存するカラム (JSON形式)
             $table->timestamps();  // 作成日と更新日
