@@ -83,7 +83,7 @@
                                     <div id="thumbnails">
                                         @if (!empty($images) && is_array($images))
                                             @foreach ($images as $image)
-                                                <div class="img" style="background-image: url('{{ asset('storage/' . $image) }}');"></div>
+                                                <div class="img thumbnail" style="background-image: url('{{ asset('storage/' . $image) }}');"></div>
                                             @endforeach
                                         @endif
                                     </div>
@@ -98,6 +98,10 @@
                             <!-- 画像削除ボタン -->
                             <button class="delete_btn" type="button" id="deleteButton">現在の画像を削除</button>
                         </article>
+
+
+
+
                         {{-- <article class="product_img">
                             <article class="img_content">
                                 <!-- 初期画像を渡す隠し入力 -->
