@@ -95,7 +95,7 @@ class AdminProductController extends Controller
 
         //商品が見つからなかった場合の処理
         if(!$product){
-            return redirect()->route(admin.product.index);
+            return redirect()->route('admin.product.index');
         }
 
         return view('admin-product-show', compact('product'));
