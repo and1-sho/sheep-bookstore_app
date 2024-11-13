@@ -61,10 +61,11 @@
                             </div>
                         </article>
 
+
                         <article class="product_img">
                             <article class="img_content">
                                 <!-- 初期画像を渡す隠し入力 -->
-                                <input type="hidden" id="initialImage" value="{{ $product->images ? json_encode($product->images) : '' }}">
+                                <input type="hidden" id="initialImage" value="{{ $product->images ? json_encode(array_map(fn($image) => asset('storage/' . $image), is_array($product->images) ? $product->images : json_decode($product->images))) : '' }}">
 
                                 <!-- 選択した画像（メイン画像） -->
                                 <div class="img_1">
@@ -78,6 +79,7 @@
                                         <div id="mainImage" style="background-image: url('{{ asset('storage/' . $images[0]) }}')"></div>
                                     @endif
                                 </div>
+
                                 <!-- サムネイル -->
                                 <div class="img_all">
                                     <div id="thumbnails">
@@ -98,34 +100,7 @@
                             <!-- 画像削除ボタン -->
                             <button class="delete_btn" type="button" id="deleteButton">現在の画像を削除</button>
                         </article>
-                        {{-- <article class="product_img">
-                            <article class="img_content">
-                                <!-- 初期画像を渡す隠し入力 -->
-                                <input type="hidden" id="initialImage" value="{{ $product->image ? asset('storage/' . $product->image) : '' }}">
 
-                                <!-- 選択した画像（メイン画像） -->
-                                <div class="img_1">
-                                    <div id="mainImage" style="background-image: url('{{ $product->image ? asset('storage/' . $product->image) : '' }}');"></div>
-                                </div>
-
-                                <!-- サムネイル -->
-                                <div class="img_all">
-                                    <div id="thumbnails">
-                                        @if ($product->image)
-                                            <div class="img" style="background-image: url('{{ asset('storage/' . $product->image) }}');"></div>
-                                        @endif
-                                    </div>
-                                </div>
-                            </article>
-
-                            <div class="add_img">
-                                <label for="image">商品画像</label>
-                                <input class="input" id="imageInput" type="file" name="image" accept="image/*" multiple>
-                            </div>
-
-                            <!-- 画像削除ボタン -->
-                            <button class="delete_btn" type="button" id="deleteButton">現在の画像を削除</button>
-                        </article> --}}
                     </div>
 
                     <!-- 商品の登録ボタン -->
