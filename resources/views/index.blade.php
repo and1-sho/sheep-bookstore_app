@@ -10,12 +10,13 @@
 </head>
 
 <body>
+
     <div id="app">
         <div id="UserHeader"></div>
         <article class="content_box">
             @foreach ($products as $product)
             <!-- 詳細画面のリンク -->
-            <a class="book_box" href="#">
+            <a class="book_box" href="{{ route('products.show', $product->id) }}">
                 <!-- 画像の表示 -->
                 <figure class="book_img">
                     @php

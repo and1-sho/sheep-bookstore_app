@@ -40,7 +40,7 @@ Route::delete('admin/products/{id}', [AdminProductController::class, 'destroy'])
 /*************  ユーザー側 **************/
 // 商品一覧を表示
 Route::get('/', [ProductController::class, 'index'])->name('index');
-
+Route::get('/products/{id}', [ProductController::class, 'show'])->name('products.show');
 
 
 Route::get('/dashboard', function () {
