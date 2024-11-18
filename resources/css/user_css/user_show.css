@@ -52,7 +52,7 @@
     height: 500px;
     border: solid 1px #D9D8D2;
     background-color: #ededed;
-    margin-bottom: 12px;
+    /* margin-bottom: 12px; */
     margin-left: 105px;
 }
 
@@ -73,7 +73,7 @@
 
 #thumbnails {
     max-width: 325px;
-    gap: 5px;
+    gap: 20px;
 }
 
 .img {
@@ -86,7 +86,7 @@
     background-color: #ededed;
     cursor: pointer;
     transition: border 0.1s; /* ホバー時のアニメーション */
-    margin-top: 5px;
+    margin-bottom: 18px;
 }
 
 .img.selected {
