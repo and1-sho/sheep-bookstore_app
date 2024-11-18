@@ -6,45 +6,15 @@
 
         <title>Laravel</title>
         @vite(['resources/css/app.css', 'resources/js/app.js'])
-        @vite('resources/css/admin.css')
-        @vite('resources/css/admins_css/product_show.css')
+        @vite('resources/css/user_css/user_show.css')
         @vite('resources/js/imageHandler_show.js')
     </head>
 
     <body>
         <div id="app">
-            <div id="AdminHeader"></div>
+            <div id="UserHeader"></div>
             <article class="content_box">
-                ユーザー側の詳細画面
-                <h1 class="title">商品詳細</h1>
                 <div class="content">
-                    <article class="product_info">
-                        <dl class="info_item">
-                            <dt>書籍名：</dt>
-                            <dd>{{ $product->product_name }}</dd>
-                        </dl>
-                        <dl class="info_item">
-                            <dt>著者名：</dt>
-                            <dd>{{ $product->author }}</dd>
-                        </dl>
-                        <dl class="info_item">
-                            <dt>カテゴリ：</dt>
-                            <dd>{{ optional($product->category)->category_name }}</dd>
-                        </dl>
-                        <dl class="info_item">
-                            <dt>説明：</dt>
-                            <dd>{{ $product->description }}</dd>
-                        </dl>
-                        <dl class="info_item">
-                            <dt>金額：</dt>
-                            <dd>{{ $product->price }}円</dd>
-                        </dl>
-                        <dl class="info_item item_end">
-                            <dt>在庫数：</dt>
-                            <dd>{{ $product->stock }}</dd>
-                        </dl>
-                    </article>
-
                     <!-- 画像がある場合は表示 -->
                     @php
                         // imagesが配列でない場合はJSONデコード
@@ -53,11 +23,6 @@
 
                     @if (!empty($images) && is_array($images))
                         <article class="img_content">
-                            <!-- メイン画像（最初の画像） -->
-                            <div class="img_1">
-                                <div id="mainImage" style="background-image: url('{{ asset('storage/' . $images[0]) }}')"></div>
-                            </div>
-
                             <!-- サムネイル表示エリア -->
                             <div class="img_all">
                                 <div id="thumbnails">
@@ -65,6 +30,11 @@
                                         <div class="img thumbnail" style="background-image: url('{{ asset('storage/' . $image) }}');"></div>
                                     @endforeach
                                 </div>
+                            </div>
+
+                            <!-- メイン画像（最初の画像） -->
+                            <div class="img_1">
+                                <div id="mainImage" style="background-image: url('{{ asset('storage/' . $images[0]) }}')"></div>
                             </div>
                         </article>
                     @else
@@ -75,22 +45,35 @@
                             </div>
                         </article>
                     @endif
+
+                    <article class="product_info">
+                        {{-- 著者名 --}}
+                        <p class="author">{{ $product->author }}</p>
+
+                        {{-- 本のタイトル --}}
+                        <h1>{{ $product->product_name }}</h1>
+
+                        {{-- 金額 --}}
+                        <p class="price">¥{{ $product->price }}<span>（税込）</span></p>
+
+                        {{-- 説明 --}}
+                        <p class="description">{{ $product->description }}</p>
+
+                        <article class="select_box">
+                            {{-- カウンター（vue） --}}
+                            <div id="Counter"></div>
+
+                            {{-- カート追加ボタン --}}
+                            <a class="btn add_btn" href="#">カートに追加する</a>
+
+                            {{-- 購入ボタン --}}
+                            <a class="btn" href="#">購入する</a>
+
+                            {{-- 戻るボタン --}}
+                            <a class="btn return_btn" href="http://localhost:8000">戻る</a>
+                        </article>
+                    </article>
                 </div>
-
-                <article class="btn_box">
-                    {{-- 削除ボタン --}}
-                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn delete_btn" type="submit">削除</button>
-                    </form>
-
-                    <!-- 編集ボタン -->
-                    <a class="btn" href="{{ route('admin.products.edit', $product->id) }}">編集する</a>
-
-                    {{-- 戻るボタン --}}
-                    <a class="btn return_btn" href="{{ route('admin.index') }}" >戻る</a>
-                </article>
             </article>
         </div>
     </body>

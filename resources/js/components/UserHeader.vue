@@ -162,7 +162,6 @@ const cartIcon = new URL('../../images/icon_cart.png', import.meta.url).href;
     font-size: 12px;
     align-content: center;
     text-align: center;
-    /* border-radius: 3px; */
     letter-spacing: 0.1em;
     margin: 30px auto;
 }

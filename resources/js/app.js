@@ -3,6 +3,7 @@ import './bootstrap';
 import { createApp } from "vue";
 import AdminHeader from './components/AdminHeader.vue';
 import UserHeader from './components/UserHeader.vue';
+import Counter from './components/Counter.vue';
 
 import Alpine from 'alpinejs';
 
@@ -27,6 +28,16 @@ if (document.getElementById('UserHeader')) {
     }
     const UserHeaderApp = createApp(UserHeader);
     UserHeaderApp.mount('#UserHeader');
+}
+
+// #Counter が存在する場合のみ Counter をマウント
+if (document.getElementById('Counter')) {
+    const existingCounterApp = document.querySelector('#Counter').__vue_app__;
+    if (existingCounterApp) {
+        existingCounterApp.unmount();
+    }
+    const CounterApp = createApp(Counter);
+    CounterApp.mount('#Counter');
 }
 
 // モーダル（ログアウト）の表示非表示

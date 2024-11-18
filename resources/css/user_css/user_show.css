@@ -1,42 +1,58 @@
 /* =========================================
 
-　　admin-product-showのcss
+　　user-showのcss
 
 ============================================ */
 .content {
-    display: grid;
-    grid-template-columns: 425px auto ;
-    row-gap:30px;
-    margin-top: 85px;
+    display: flex;
+    gap: 105px;
+    margin-top: 160px;
     letter-spacing: 0.1em;
-    margin-left: 65px;
+    margin-left: 105px;
     color: #222222;
 }
 
-.info_item {
-    display: grid;
-    grid-template-columns: 90px 320px;
-    margin-bottom: 40px;
+.product_info {
+    max-width: 400px;
 }
 
-.item_end {
-    margin-bottom: 0;
+.author {
+    font-size: 13px;
+    margin: 15px 0 30px;
 }
 
-.info_item dt {
+.product_info h1 {
+    font-size: 18px;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
+.price {
+    font-size: 18px;
+    color: #6A6A6A;
+    letter-spacing: 0.1em;
+    margin-bottom: 40px;
+}
+
+.price span {
+    font-size: 14px;
+}
+
+.description {
+    line-height: 2em;
+}
+
 .img_content {
-    padding-left: 100px;
+    display: flex;
 }
 
 .img_1 {
-    width: 325px;
-    height: 325px;
+    width: 500px;
+    height: 500px;
     border: solid 1px #D9D8D2;
     background-color: #ededed;
     margin-bottom: 12px;
+    margin-left: 105px;
 }
 
 #mainImage {
@@ -55,8 +71,6 @@
 }
 
 #thumbnails {
-    display: flex;
-    flex-wrap: wrap;
     max-width: 325px;
     gap: 5px;
 }
@@ -82,35 +96,28 @@
     padding-top: 20px;
 }
 
-.btn_box {
+.select_box {
     text-align: center;
-    margin: 95px auto 90px;
-    display: flex;
+    border-top: solid 1px #D4D2CB;
+    margin-top: 35px;
+    padding-top: 20px;
     justify-content: center;
 }
 
 .btn {
     display: block;
-    width: 220px;
+    max-width: 400px;
     height: 50px;
     background-color: #524E4E;
     color: #ffffff;
     font-size: 18px;
     align-content: center;
-    border-radius: 3px;
     letter-spacing: 0.1em;
+    margin-bottom: 20px;
 }
 
-.delete_btn {
+.add_btn,.return_btn {
     background-color: #fff;
-    color: #524E4E;
-    border: solid 1px #524E4E;
-    margin-right: 35px;
-}
-
-.return_btn {
-    background-color: #fff;
-    color: #524E4E;
-    border: solid 1px #524E4E;
-    margin-left: 35px;
+    color: #6A6A6A;
+    border: solid 1px #D4D2CB;
 }
