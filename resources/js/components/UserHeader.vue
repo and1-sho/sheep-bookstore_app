@@ -16,10 +16,12 @@
             <img class="icon_cart open" :src="cartIcon" alt="Cart Icon">
         </article>
 
-        <!-- モーダル -->
-        <div class="modal_bg"></div>
-        <div class="container">
-            <div class="close">
+        <!-- モーダル背景 -->
+        <div class="modal_bg" :class="{ active: isModalVisible }"></div>
+
+        <!-- モーダル本体 -->
+        <div class="container" :class="{ active: isModalVisible }">
+            <div class="close" @click="closeModal">
                 <i></i>
                 <i></i>
             </div>
@@ -44,6 +46,22 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
+// モーダルの表示状態を管理
+const isModalVisible = ref(false);
+
+const openModal = () => {
+    isModalVisible.value = true;
+};
+
+// グローバルに関数を登録
+window.openCartModal = openModal;
+
+const closeModal = () => {
+    isModalVisible.value = false;
+};
+
 // importで画像を指定
 const logoImage = new URL('../../images/logo_img.png', import.meta.url).href;
 const loginIcon = new URL('../../images/icon_login.png', import.meta.url).href;

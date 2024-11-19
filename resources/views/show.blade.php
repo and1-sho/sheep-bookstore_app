@@ -10,6 +10,24 @@
         @vite('resources/js/imageHandler_show.js')
     </head>
 
+    <script>
+        // グローバルにVueのモーダルを開く関数を登録
+        function openCartModal() {
+            const userHeaderElement = document.querySelector('#UserHeader');
+            if (userHeaderElement && userHeaderElement.__vue_app__) {
+                const vueApp = userHeaderElement.__vue_app__;
+                const openModalFn = vueApp._instance?.proxy?.openModal; // openModalの参照
+                if (typeof openModalFn === 'function') {
+                    openModalFn(); // 関数を呼び出す
+                } else {
+                    console.error("openModal 関数が見つかりませんでした");
+                }
+            } else {
+                console.error("Vue アプリケーションが見つかりませんでした");
+            }
+        }
+    </script>
+
     <body>
         <div id="app">
             <div id="UserHeader"></div>
@@ -64,7 +82,7 @@
                             <div id="Counter"></div>
 
                             {{-- カート追加ボタン --}}
-                            <a class="btn add_btn" href="#">カートに追加する</a>
+                            <a class="btn add_btn" href="#"  onclick="openCartModal()">カートに追加する</a>
 
                             {{-- 購入ボタン --}}
                             <a class="btn" href="#">購入する</a>
