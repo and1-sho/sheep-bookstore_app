@@ -34,6 +34,7 @@ const decrement = () => {
     gap: 10px;
     border: solid 1px #D4D2CB;
     width: 140px;
+    height: 45px;
     margin-bottom: 25px;
   }
 
