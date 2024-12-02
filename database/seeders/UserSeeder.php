@@ -25,5 +25,15 @@ class UserSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'User',  // 管理者の名前
+            'email' => 'user@test.com',  // 管理者のメールアドレス
+            'password' => Hash::make('password'),  // ハッシュ化されたパスワード
+            'address' => 'Address',  // 管理者の住所（例として追加）
+            'role' => 'user',  // 管理者を識別するための値
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
